@@ -10,9 +10,12 @@ class HybridWorkTopo(Topo):
     def build(self):
 
         # Remote Users
-        h1 = self.addHost('h1')
-        h2 = self.addHost('h2')
-        h3 = self.addHost('h3')
+        NUM_USERS = 20
+
+        users = []
+        for i in range(1, NUM_USERS + 1):
+            user = self.addHost(f'h{i}')
+            users.append(user)
 
         # Corporate Hosts
         corp_user = self.addHost('corp1')
@@ -28,23 +31,18 @@ class HybridWorkTopo(Topo):
         corporate_lan = self.addSwitch('s5')
 
         # Remote Users -> Home Router
-        self.addLink(h1, home_router,
-                     cls=TCLink,
-                     bw=50,
-                     delay='10ms',
-                     loss=1)
+        for i, user in enumerate(users, start=1):
+            delay_value = 10 + (i % 3) * 5
+            loss_value = 1 if i % 3 != 0 else 2
 
-        self.addLink(h2, home_router,
-                     cls=TCLink,
-                     bw=50,
-                     delay='15ms',
-                     loss=1)
-
-        self.addLink(h3, home_router,
-                     cls=TCLink,
-                     bw=50,
-                     delay='20ms',
-                     loss=2)
+            self.addLink(
+                user,
+                home_router,
+                cls=TCLink,
+                bw=50,
+                delay=f'{delay_value}ms',
+                loss=loss_value
+            )
 
         # Network Path
         self.addLink(home_router, internet,
