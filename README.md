@@ -1,56 +1,60 @@
-# Network Performance Simulation for Hybrid Work Environments
+Network Performance Simulation for Hybrid Work Environments
 
-This repository contains the Python implementation developed for the **Computer Science Project (DLMCSPCSP01)** at **IU International University of Applied Sciences**.
+This repository contains the Python implementation developed for the Computer Science Project (DLMCSPCSP01) at IU International University of Applied Sciences.
 
-The simulation is implemented using **Python** and **Mininet** and runs in a **Xubuntu 24.04 LTS** virtual machine.
+The project implements a virtual enterprise network using Python, Mininet, and Open vSwitch to evaluate the performance of hybrid work environments. The simulated topology represents remote users, VPN connectivity, corporate infrastructure, and cloud services while supporting controlled performance evaluation under different network conditions.
 
-## Technologies
+Technologies
+Python 3
+Mininet
+Open vSwitch
+Xubuntu 24.04 LTS
+Oracle VirtualBox 7.2.8
+iPerf
+Implemented Features
+Hybrid work network topology
+Remote users, VPN gateway, corporate LAN, and cloud server
+Configurable bandwidth limitations
+Configurable transmission delay
+Packet loss simulation
+Connectivity verification using pingall
+Latency evaluation using ICMP ping
+Throughput evaluation using iPerf
+Scalability testing with increasing numbers of users
+Initial congestion analysis
+Python-based topology implementation
+Repository Structure
+hybrid_topology.py
+README.md
+Requirements
+Python 3
+Mininet
+Open vSwitch
+iPerf
+Running the Project
 
-* Python 3
-* Mininet
-* Open vSwitch
-* Xubuntu 24.04 LTS
-* Oracle VirtualBox 7.2.8
+Start the topology:
 
-## Current Features
-
-* Hybrid work network topology
-* Multiple virtual hosts and network segments
-* Configurable bandwidth
-* Configurable transmission delay
-* Packet loss simulation
-* Connectivity testing using Mininet
-* Python-based topology implementation
-
-## Planned Features
-
-* Latency measurement
-* Throughput analysis using iPerf
-* Scalability testing with increasing numbers of users
-* Congestion analysis
-* Automated performance evaluation
-
-## Repository Structure
-├── hybrid_topology.py
-└── README.md
-
-
-## Running the Project
-
-After installing Mininet and the required dependencies, execute:
-
-```bash
 sudo python3 hybrid_topology.py
-```
 
-To verify connectivity, use:
+After the Mininet CLI starts, verify connectivity:
 
 pingall
 
+Example latency test:
 
-## Author
+h1 ping -c 10 srv1
 
-**Sahar Mansouri**
+Example throughput test:
+
+h1 iperf -c srv1
+
+Exit Mininet:
+
+exit
+Author
+
+Sahar Mansouri
 
 IU International University of Applied Sciences
 
